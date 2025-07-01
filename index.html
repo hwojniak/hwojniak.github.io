@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Interactive Canvas</title>
+
+    <!-- Google Fonts: Inter, Cherry Bomb One, Cinzel Decorative, Bangers, DynaPuff, Bree Serif, VT323, Share Tech Mono, Permanent Marker, Caveat Brush -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bree+Serif&family=Caveat+Brush&family=Cherry+Bomb+One&family=Cinzel+Decorative&family=DynaPuff&family=Inter&family=Permanent+Marker&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* Optional: Remove default body margin and overflow */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars if canvas is larger than window */
+            background-color: #000; /* Match your sketch background */
+        }
+        /* Style for p5 buttons/input created by p5.js if needed */
+        button, input[type="text"] {
+             /* Ensure these elements are positioned by p5.js and don't interfere with layout */
+             position: absolute; /* p5.js position() uses absolute */
+             z-index: 10; /* Ensure they are above the canvas */
+        }
+    </style>
+
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
+
+    <!-- ... sketch.js script ... -->
+    <script src="sketch.js"></script>
+
+    <!-- **PDF library link** - REMOVED -->
+    <!-- <script src="p5.pdf.js"></script> -->
+
+</body>
+</html>
