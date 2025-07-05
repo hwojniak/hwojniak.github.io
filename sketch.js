@@ -1,4 +1,3 @@
-// Interactive canvas website-tool project using p5.js
 
 let shapes = []; // Shapes currently floating or grabbed (Includes temporarily grabbed placed items)
 let placedItems = []; // Items placed and solidified on the central canvas
@@ -950,8 +949,7 @@ function draw() {
 
       } else {
            // Draw fallback text if logo failed to load
-           fill(255); // Changed from 50 to 255 for white text on black header
-           textSize(20);
+           // Reset fill style for text (this was overriding the gradient)
            textAlign(LEFT, CENTER);
             // Use textFont directly in the main drawing context
             // Use Sen-Regular if loaded, otherwise fallback string
@@ -1986,5 +1984,7 @@ function isMouseOverCanvasArea(pX, pY) {
     const checkY = pY === undefined ? mouseY : pY;
 
     return checkX >= CANVAS_AREA_X && checkX <= CANVAS_AREA_X + CANVAS_AREA_W &&
+           checkY >= CANVAS_AREA_Y && checkY <= CANVAS_AREA_Y + CANVAS_AREA_H;
+}
            checkY >= CANVAS_AREA_Y && checkY <= CANVAS_AREA_Y + CANVAS_AREA_H;
 }
