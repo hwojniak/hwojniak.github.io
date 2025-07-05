@@ -925,44 +925,46 @@ function draw() {
     // Create gradient for header
     let headerGradient = drawingContext.createLinearGradient(0, 0, 0, HEADER_HEIGHT);
     headerGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Pure white with 100% alpha (opaque)
-    headerGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)'); // Pure white with 50% alpha
     headerGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');    // Pure white with 0% alpha (transparent)
 
+    // Draw the gradient rectangle
     drawingContext.fillStyle = headerGradient;
     noStroke();
     rect(0, 0, width, HEADER_HEIGHT);
 
-      // --- START: Draw the Header Logo (SVG or Fallback Text) ---
-      let logoX = 20;
-      let logoCenterY = HEADER_HEIGHT / 2;
-      let logoTargetWidth = 300;  // Changed from 150 to 300
+    // Reset fill style for text
+    drawingContext.fillStyle = 'rgba(0, 0, 0, 1)'; // Black text
 
-      // Check if logoImage is loaded and valid
-      if (logoImage && typeof logoImage.width === 'number' && logoImage.width > 0) {
-           let logoAspectRatio = logoImage.height / logoImage.width;
-           let logoTargetHeight = logoTargetWidth * logoAspectRatio;
+    // --- START: Draw the Header Logo (SVG or Fallback Text) ---
+    let logoX = 20;
+    let logoCenterY = HEADER_HEIGHT / 2;
+    let logoTargetWidth = 300;  // Changed from 150 to 300
 
-           let logoDrawX = logoX;
-           let logoDrawY = logoCenterY - logoTargetHeight / 2;
+    // Check if logoImage is loaded and valid
+    if (logoImage && typeof logoImage.width === 'number' && logoImage.width > 0) {
+         let logoAspectRatio = logoImage.height / logoImage.width;
+         let logoTargetHeight = logoTargetWidth * logoAspectRatio;
 
-           imageMode(CORNER); // Draw image from its top-left corner
-           image(logoImage, logoDrawX, logoDrawY, logoTargetWidth, logoTargetHeight);
+         let logoDrawX = logoX;
+         let logoDrawY = logoCenterY - logoTargetHeight / 2;
 
-      } else {
-           // Draw fallback text if logo failed to load
-           fill(255); // Changed from 50 to 255 for white text on black header
-           textSize(20);
-           textAlign(LEFT, CENTER);
-            // Use textFont directly in the main drawing context
-            // Use Sen-Regular if loaded, otherwise fallback string
-            if (fontSenRegular && fontSenRegular !== baseFont) { // Check if it's a truthy font object
-                textFont(fontSenRegular);
-            } else {
-                textFont(baseFont); // Use monospace string
-            }
-           text("COMPOSTER", logoX, logoCenterY); // Use "COMPOSTER" as fallback text
-      }
-      // --- END: Draw the Header Logo ---
+         imageMode(CORNER); // Draw image from its top-left corner
+         image(logoImage, logoDrawX, logoDrawY, logoTargetWidth, logoTargetHeight);
+
+    } else {
+         // Draw fallback text if logo failed to load
+         textSize(20);
+         textAlign(LEFT, CENTER);
+          // Use textFont directly in the main drawing context
+          // Use Sen-Regular if loaded, otherwise fallback string
+          if (fontSenRegular && fontSenRegular !== baseFont) { // Check if it's a truthy font object
+              textFont(fontSenRegular);
+          } else {
+              textFont(baseFont); // Use monospace string
+          }
+         text("COMPOSTER", logoX, logoCenterY); // Use "COMPOSTER" as fallback text
+    }
+    // --- END: Draw the Header Logo ---
 }
 
 // Positions the central canvas area and UI elements based on window size
