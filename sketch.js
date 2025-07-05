@@ -1116,7 +1116,8 @@ function mousePressed() {
     // Store original position when starting to drag
     if (keyIsDown(ALT)) {
         for (let i = placedItems.length - 1; i >= 0; i--) {
-            if (placedItems[i].isMouseOver(mouseX, mouseY)) {
+            // Only check for placed items if mouse is over the canvas area
+            if (isMouseOverCanvasArea(mouseX, mouseY) && placedItems[i].isMouseOver(mouseX, mouseY)) {
                 grabbedItem = placedItems[i];
                 grabbedItem.isGrabbed = true;
                 grabbedItem.isPlacing = false;
@@ -1165,7 +1166,8 @@ function mousePressed() {
     } else {
         // Normal grab behavior without Alt
         for (let i = placedItems.length - 1; i >= 0; i--) {
-            if (placedItems[i].isMouseOver(mouseX, mouseY)) {
+            // Only check for placed items if mouse is over the canvas area
+            if (isMouseOverCanvasArea(mouseX, mouseY) && placedItems[i].isMouseOver(mouseX, mouseY)) {
                 grabbedItem = placedItems[i];
                 grabbedItem.isGrabbed = true;
                 grabbedItem.isPlacing = false;
