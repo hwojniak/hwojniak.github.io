@@ -775,7 +775,7 @@ function setup() {
   savePNGButton = createButton("SAVE PNG");
   saveHighResPNGButton = createButton("SAVE HI-RES PNG");
   clearButton = createButton("CLEAR");
-  refreshButton = createButton("RELOAD FLOATING"); // Changed text for clarity
+  refreshButton = createButton("RELOAD"); // Changed text for clarity
 
    // Apply consistent styles to buttons
    const baseButtonStyle = {
@@ -922,7 +922,13 @@ function draw() {
     }
 
     // --- DRAW HEADER / UI OVERLAY ---
-    fill(0); // Changed from 220 to 0 for black header
+    // Create gradient for header
+    let gradient = drawingContext.createLinearGradient(0, 0, 0, HEADER_HEIGHT);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Pure white with 100% alpha (opaque)
+    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)'); // Pure white with 50% alpha
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');    // Pure white with 0% alpha (transparent)
+
+    drawingContext.fillStyle = gradient;
     noStroke();
     rect(0, 0, width, HEADER_HEIGHT);
 
