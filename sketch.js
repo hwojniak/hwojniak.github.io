@@ -893,14 +893,14 @@ function draw() {
     }
 
     // Draw border around canvas area on the main canvas
-    let gradient = drawingContext.createLinearGradient(
+    let borderGradient = drawingContext.createLinearGradient(
       CANVAS_AREA_X, CANVAS_AREA_Y, 
       CANVAS_AREA_X + CANVAS_AREA_W, CANVAS_AREA_Y
     );
-    gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');  // White with 0% opacity
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.75)');     // Black with 75% opacity
+    borderGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');  // White with 0% opacity
+    borderGradient.addColorStop(1, 'rgba(0, 0, 0, 0.75)');     // Black with 75% opacity
     
-    drawingContext.strokeStyle = gradient;
+    drawingContext.strokeStyle = borderGradient;
     strokeWeight(1);
     noFill();
     rect(CANVAS_AREA_X + 0.5, CANVAS_AREA_Y + 0.5, CANVAS_AREA_W - 1, CANVAS_AREA_H - 1);
@@ -923,12 +923,12 @@ function draw() {
 
     // --- DRAW HEADER / UI OVERLAY ---
     // Create gradient for header
-    let gradient = drawingContext.createLinearGradient(0, 0, 0, HEADER_HEIGHT);
-    gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Pure white with 100% alpha (opaque)
-    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)'); // Pure white with 50% alpha
-    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');    // Pure white with 0% alpha (transparent)
+    let headerGradient = drawingContext.createLinearGradient(0, 0, 0, HEADER_HEIGHT);
+    headerGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Pure white with 100% alpha (opaque)
+    headerGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)'); // Pure white with 50% alpha
+    headerGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');    // Pure white with 0% alpha (transparent)
 
-    drawingContext.fillStyle = gradient;
+    drawingContext.fillStyle = headerGradient;
     noStroke();
     rect(0, 0, width, HEADER_HEIGHT);
 
