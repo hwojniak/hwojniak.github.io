@@ -1,4 +1,3 @@
-
 let shapes = []; // Shapes currently floating or grabbed (Includes temporarily grabbed placed items)
 let placedItems = []; // Items placed and solidified on the central canvas
 let grabbedItem = null; // The shape currently being dragged
@@ -921,7 +920,8 @@ function draw() {
     }
 
     // --- DRAW HEADER / UI OVERLAY ---
-    // Create gradient for header
+    // Create gradient for header using p5.js approach
+    push(); // Save current drawing state
     let headerGradient = drawingContext.createLinearGradient(0, 0, 0, HEADER_HEIGHT);
     headerGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Pure white with 100% alpha (opaque)
     headerGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)'); // Pure white with 50% alpha
@@ -930,37 +930,39 @@ function draw() {
     drawingContext.fillStyle = headerGradient;
     noStroke();
     rect(0, 0, width, HEADER_HEIGHT);
+    pop(); // Restore drawing state
 
-      // --- START: Draw the Header Logo (SVG or Fallback Text) ---
-      let logoX = 20;
-      let logoCenterY = HEADER_HEIGHT / 2;
-      let logoTargetWidth = 300;  // Changed from 150 to 300
+    // --- START: Draw the Header Logo (SVG or Fallback Text) ---
+    let logoX = 20;
+    let logoCenterY = HEADER_HEIGHT / 2;
+    let logoTargetWidth = 300;  // Changed from 150 to 300
 
-      // Check if logoImage is loaded and valid
-      if (logoImage && typeof logoImage.width === 'number' && logoImage.width > 0) {
-           let logoAspectRatio = logoImage.height / logoImage.width;
-           let logoTargetHeight = logoTargetWidth * logoAspectRatio;
+    // Check if logoImage is loaded and valid
+    if (logoImage && typeof logoImage.width === 'number' && logoImage.width > 0) {
+         let logoAspectRatio = logoImage.height / logoImage.width;
+         let logoTargetHeight = logoTargetWidth * logoAspectRatio;
 
-           let logoDrawX = logoX;
-           let logoDrawY = logoCenterY - logoTargetHeight / 2;
+         let logoDrawX = logoX;
+         let logoDrawY = logoCenterY - logoTargetHeight / 2;
 
-           imageMode(CORNER); // Draw image from its top-left corner
-           image(logoImage, logoDrawX, logoDrawY, logoTargetWidth, logoTargetHeight);
+         imageMode(CORNER); // Draw image from its top-left corner
+         image(logoImage, logoDrawX, logoDrawY, logoTargetWidth, logoTargetHeight);
 
-      } else {
-           // Draw fallback text if logo failed to load
-           // Reset fill style for text (this was overriding the gradient)
-           textAlign(LEFT, CENTER);
-            // Use textFont directly in the main drawing context
-            // Use Sen-Regular if loaded, otherwise fallback string
-            if (fontSenRegular && fontSenRegular !== baseFont) { // Check if it's a truthy font object
-                textFont(fontSenRegular);
-            } else {
-                textFont(baseFont); // Use monospace string
-            }
-           text("COMPOSTER", logoX, logoCenterY); // Use "COMPOSTER" as fallback text
-      }
-      // --- END: Draw the Header Logo ---
+    } else {
+         // Draw fallback text if logo failed to load
+         fill(255); // White text
+         textSize(20);
+         textAlign(LEFT, CENTER);
+          // Use textFont directly in the main drawing context
+          // Use Sen-Regular if loaded, otherwise fallback string
+          if (fontSenRegular && fontSenRegular !== baseFont) { // Check if it's a truthy font object
+              textFont(fontSenRegular);
+          } else {
+              textFont(baseFont); // Use monospace string
+          }
+         text("COMPOSTER", logoX, logoCenterY); // Use "COMPOSTER" as fallback text
+    }
+    // --- END: Draw the Header Logo ---
 }
 
 // Positions the central canvas area and UI elements based on window size
