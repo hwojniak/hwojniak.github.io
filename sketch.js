@@ -802,10 +802,30 @@ function setup() {
    });
 
    // Assign click handlers
-   if(savePNGButton) savePNGButton.elt.addEventListener('click', saveCanvasAreaAsPNG);
-   if(saveHighResPNGButton) saveHighResPNGButton.elt.addEventListener('click', saveCanvasAreaAsHighResPNG);
-   if(clearButton) clearButton.elt.addEventListener('click', restartAll);
-   if(refreshButton) refreshButton.elt.addEventListener('click', resetFloatingShapes); // Changed function name for clarity
+   if(savePNGButton) savePNGButton.elt.addEventListener('click', function() {
+       saveCanvasAreaAsPNG();
+       if (canvas && canvas.elt && typeof canvas.elt.focus === 'function') {
+           setTimeout(() => canvas.elt.focus(), 0);
+       }
+   });
+   if(saveHighResPNGButton) saveHighResPNGButton.elt.addEventListener('click', function() {
+       saveCanvasAreaAsHighResPNG();
+       if (canvas && canvas.elt && typeof canvas.elt.focus === 'function') {
+           setTimeout(() => canvas.elt.focus(), 0);
+       }
+   });
+   if(clearButton) clearButton.elt.addEventListener('click', function() {
+       restartAll();
+       if (canvas && canvas.elt && typeof canvas.elt.focus === 'function') {
+           setTimeout(() => canvas.elt.focus(), 0);
+       }
+   });
+   if(refreshButton) refreshButton.elt.addEventListener('click', function() {
+       resetFloatingShapes();
+       if (canvas && canvas.elt && typeof canvas.elt.focus === 'function') {
+           setTimeout(() => canvas.elt.focus(), 0);
+       }
+   });
 
 
    initialPositioningDone = false; // Will be set true after first positioning
