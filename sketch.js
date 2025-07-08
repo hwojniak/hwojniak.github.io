@@ -727,7 +727,10 @@ let initialPositioningDone = false; // Flag to ensure UI positioning happens onc
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-    if (width <= 0 || height <= 0) {
+  if (canvas && canvas.elt) {
+    canvas.elt.setAttribute('tabindex', '0');
+  }
+  if (width <= 0 || height <= 0) {
          console.warn("Canvas dimensions are zero or negative. Skipping setup.");
          return;
      }
